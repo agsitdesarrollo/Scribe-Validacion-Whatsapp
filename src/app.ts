@@ -31,9 +31,15 @@ const main = async () => {
   adapterProvider.server.post(
     "/v1/messages",
     handleCtx(async (bot, req, res) => {
-      const { number, message, urlMedia } = req.body;
-      await bot.sendMessage(number, message, { media: urlMedia ?? null });
-      return res.end("sended");
+      try {
+        const { number, message, urlMedia } = req.body;
+        await bot.sendMessage("521" + number, message, {
+          media: urlMedia ?? null,
+        });
+        return res.end("mensaje enviado");
+      } catch (error) {
+        console.log("hay un error", error);
+      }
     })
   );
 
