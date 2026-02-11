@@ -24,6 +24,9 @@ RUN pnpm install --frozen-lockfile
 
 COPY . .
 
+# Compilar TypeScript con Rollup
+RUN pnpm build
+
 # Crear directorio para sesiones de WhatsApp
 RUN mkdir -p /app/bot_sessions
 
